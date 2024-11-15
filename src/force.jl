@@ -72,6 +72,7 @@ function force(p, ρ, τ)
     for i ∈ eachindex(fields)
 
         s = fields.s[i]
+        # x = sqrt(s) / (2/2 * √2)  # Arian: I do not know why I included this line
         x = sqrt(s) / (2 * √2)
         k = fields.k[i]
 
