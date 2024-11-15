@@ -3,10 +3,16 @@ function flip(ϵ)
 end
 
 function gaussian_intensity_along_axes(r, axes, centers)
-    """1/e^2 width = 5mm Gaussian beam """
+    """1/e^2 width = 10 mm Gaussian beam """
     d2 = (r[axes[1]] - centers[1])^2 + (r[axes[2]] - centers[2])^2   
     return exp(-2*d2/(20e-3/(1/k))^2)
 end
+
+# function gaussian_intensity_along_axes(r, axes, centers) # flat top beam
+#     """ 1/e^2 width = 10 mm Gaussian beam """
+#     d2 = (r[axes[1]] - centers[1])^2 + (r[axes[2]] - centers[2])^2   
+#     return sqrt(d2) <= 2*10e-3/(1/k)
+# end
 
 function define_lasers(
         states,
@@ -59,14 +65,16 @@ function define_lasers(
     rand3 = rand()
     pol3_x = pol3_x.*sqrt(1 - rand3*pol_imbalance) + flip(pol3_x).*sqrt(rand3*pol_imbalance)
     rand4 = rand()
-    pol4_x = pol3_x.*sqrt(1 - rand4*pol_imbalance) + flip(pol4_x).*sqrt(rand4*pol_imbalance)
+    pol4_x = pol4_x.*sqrt(1 - rand4*pol_imbalance) + flip(pol4_x).*sqrt(rand4*pol_imbalance)
     rand4 = rand()
     
     sx_rand = 1/2-rand()
     sy_rand = 1/2-rand()
     sz_rand = 1/2-rand()
     
-    ϕs = [exp(im*2π*rand()),exp(im*2π*rand()),exp(im*2π*rand()),exp(im*2π*rand()),exp(im*2π*rand()),exp(im*2π*rand())]
+    # ϕs = [exp(im*2π*rand()),exp(im*2π*rand()),exp(im*2π*rand()),exp(im*2π*rand()),exp(im*2π*rand()),exp(im*2π*rand())]
+    
+    ϕs = [1,1,1,1,1,1]
     
     kx = x̂ + [0, pointing_error[1],pointing_error[2]]
     kx = kx ./ sqrt(kx[1]^2 + kx[2]^2 + kx[3]^2)

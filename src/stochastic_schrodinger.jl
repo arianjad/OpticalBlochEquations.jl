@@ -1335,7 +1335,7 @@ function condition_simple(u,t,integrator)
     end
     r = sqrt(r)
     # condition for capture
-    if real(u[p.n_states + p.n_excited + 1] + u[p.n_states + p.n_excited + 2]) / √2 >= 20e-3*k # terminate if the particle is more than 20 mm from the centre
+    if real(u[p.n_states + p.n_excited + 1] + u[p.n_states + p.n_excited + 2]) / √2 >= 25e-3*k # terminate if the particle is more than 20 mm from the centre
        terminate!(integrator)
     end
     return _condition

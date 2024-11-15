@@ -225,9 +225,10 @@ function update_H_obes!(p, τ, r, H₀, fields, H, E_k, ds, ds_state1, ds_state2
             n = ds_state2_q[i] # ground state
             d_re = ds_q_re[i]
             d_im = ds_q_im[i]
+            d_im = -d_im # added 8/23/24, making sure that Hamiltonian is -d*⋅E
             val_re = E_q_re * d_re - E_q_im * d_im
             val_im = E_q_re * d_im + E_q_im * d_re
-            H.re[n,m] += -val_re # minus sign to make sure Hamiltonian is -d⋅E
+            H.re[n,m] += -val_re # minus sign to make sure Hamiltonian is -d*⋅E
             H.im[n,m] += -val_im
             H.re[m,n] += -val_re
             H.im[m,n] -= -val_im
